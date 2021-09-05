@@ -15,8 +15,10 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.omoemurao.sopegina.GifTypes
 import com.omoemurao.sopegina.MainViewModel
+import com.omoemurao.sopegina.NoInternetConnectionException
 import com.omoemurao.sopegina.R
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.serialization.SerializationException
 
 @AndroidEntryPoint
 class GifFragment : Fragment(R.layout.fragment_gif) {
@@ -113,7 +115,9 @@ class GifFragment : Fragment(R.layout.fragment_gif) {
                 }
                 error { msg, _ ->
                     Log.e("TAG", msg)
-                    Toast.makeText(view.context, msg, Toast.LENGTH_SHORT).show()
+
+                    Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+
                     icFavorite.visibility = View.GONE
                     votes.visibility = View.GONE
                     image.visibility = View.VISIBLE
@@ -123,7 +127,7 @@ class GifFragment : Fragment(R.layout.fragment_gif) {
                     Glide
                         .with(view.context)
                         .load(R.drawable.ic_error)
-                        .centerCrop()
+                        .centerInside()
                         .into(image)
                     title.text = ""
                     votes.text = ""

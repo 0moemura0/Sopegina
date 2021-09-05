@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.omoemurao.sopegina.GifRepository
 import com.omoemurao.sopegina.GifRepositoryImpl
+import com.omoemurao.sopegina.NetworkInterceptor
 import com.omoemurao.sopegina.data.api.ApiHelper
 import com.omoemurao.sopegina.data.api.ApiHelperImpl
 import com.omoemurao.sopegina.data.api.ApiService
@@ -32,8 +33,9 @@ class SingletonModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient() = OkHttpClient.Builder()
+    fun provideOkHttpClient(networkInterceptor: NetworkInterceptor) = OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        .addInterceptor(networkInterceptor)
         .connectTimeout(20, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
@@ -68,6 +70,11 @@ class SingletonModule {
         ).build()
 
     @Provides
+    fun provideInterceptor(@ApplicationContext context: Context): NetworkInterceptor {
+        return NetworkInterceptor(context)
+    }
+
+    @Provides
     @Singleton
     fun provideBaseUrl() = "https://developerslife.ru/"
 
@@ -77,7 +84,8 @@ class SingletonModule {
 
     @Provides
     @Singleton
-    fun providesDatabaseHelper(appDatabase: AppDatabase):DatabaseHelper = DatabaseHelperImpl(appDatabase)
+    fun providesDatabaseHelper(appDatabase: AppDatabase): DatabaseHelper =
+        DatabaseHelperImpl(appDatabase)
 
     @Provides
     fun provideGifRepository(
