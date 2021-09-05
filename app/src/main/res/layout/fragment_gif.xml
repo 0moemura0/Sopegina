@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/view_dimen_24dp"
+        android:layout_marginVertical="@dimen/view_dimen_24dp"
+        app:cardCornerRadius="@dimen/view_dimen_24dp"
+        app:cardElevation="@dimen/view_dimen_4dp"
+        app:layout_constraintBottom_toTopOf="@id/left"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/view_dimen_4dp"
+                android:src="@drawable/ic_error"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bgd_gradient"
+                android:ellipsize="end"
+                android:gravity="start|bottom"
+                android:lines="3"
+                android:padding="@dimen/view_dimen_24dp"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_votes"
+                app:layout_constraintHorizontal_weight="3"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="TITLETITLETITLETITLETITLETITLETITLE" />
+
+            <TextView
+                android:id="@+id/tv_votes"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/bgd_gradient"
+                android:ellipsize="end"
+                android:gravity="center_vertical|end"
+                android:lines="3"
+                android:hyphenationFrequency="none"
+                android:padding="@dimen/view_dimen_8dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iv_favorite"
+                app:layout_constraintStart_toEndOf="@id/tv_title"
+                app:layout_constraintTop_toTopOf="@id/tv_title"
+                tools:text="VOTES" />
+
+            <ImageView
+                android:id="@+id/iv_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:background="@drawable/bgd_gradient"
+                android:paddingEnd="@dimen/view_dimen_24dp"
+                android:src="@drawable/ic_favorite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_votes"
+                app:layout_constraintTop_toTopOf="@id/tv_votes" />
+
+            <ProgressBar
+                android:id="@+id/image_progress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/view_dimen_4dp"
+                android:src="@drawable/bgd_progress_bar"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ImageButton
+        android:id="@+id/right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/view_dimen_24dp"
+        android:background="@drawable/bgd_button"
+        android:paddingHorizontal="@dimen/view_dimen_24dp"
+        android:paddingVertical="@dimen/view_dimen_8dp"
+        android:rotation="180"
+        android:src="@drawable/ic_back"
+        app:layout_constraintBottom_toBottomOf="@id/left"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/left"
+        app:layout_constraintTop_toTopOf="@id/left" />
+
+    <ImageButton
+        android:id="@+id/left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/view_dimen_24dp"
+        android:layout_marginStart="@dimen/view_dimen_24dp"
+        android:background="@drawable/bgd_button"
+        android:paddingHorizontal="@dimen/view_dimen_24dp"
+        android:paddingVertical="@dimen/view_dimen_8dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/right"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

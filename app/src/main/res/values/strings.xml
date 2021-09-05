@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Sopegina</string>
+    <string name="last">Последние</string>
+    <string name="best">Лучшие</string>
+    <string name="hot">Горячие</string>
+    <string name="comments">Комментарии</string>
+    <string name="random">Рандом</string>
+    <string name="random_fun">Мне повезет!</string>
+    <string name="votes">Оценки</string>
+    <string name="description">Описание</string>
+</resources>
