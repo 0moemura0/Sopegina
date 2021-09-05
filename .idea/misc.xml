@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable/bgd_gradient.xml" value="0.3388888888888889" />
         <entry key="app/src/main/res/drawable/bgd_gradient_top.xml" value="0.2564814814814815" />
         <entry key="app/src/main/res/drawable/bgd_progress_bar.xml" value="0.3452502553626149" />
+        <entry key="app/src/main/res/drawable/bgd_splash.xml" value="0.17760416666666667" />
         <entry key="app/src/main/res/drawable/ic_error.xml" value="0.17760416666666667" />
         <entry key="app/src/main/res/drawable/ic_favorite.xml" value="0.2824074074074074" />
         <entry key="app/src/main/res/drawable/ic_progressbar.xml" value="0.3452502553626149" />
@@ -14,6 +15,8 @@
         <entry key="app/src/main/res/drawable/rect_gray_stroke_4dp.xml" value="0.3452502553626149" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1606962663975782" />
         <entry key="app/src/main/res/layout/fragment_gif.xml" value="0.25" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.17760416666666667" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.17760416666666667" />
       </map>
     </option>
   </component>

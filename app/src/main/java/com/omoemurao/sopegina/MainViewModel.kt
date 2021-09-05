@@ -49,7 +49,7 @@ class MainViewModel @Inject constructor(private val repository: GifRepository) :
                 if (usersFromApi != null && !usersFromApi.result.isNullOrEmpty()) {
                     currentPage.addAll(usersFromApi.result)
                     gifCurrent.postValue(Resource.Success(currentPage[gifQueueId.value ?: 0]))
-                } else gifCurrent.postValue(Resource.Error("Empty list"))
+                }
             } catch (e: Exception) {
                 gifCurrent.postValue(Resource.Error(e.message.toString(), null))
             }
