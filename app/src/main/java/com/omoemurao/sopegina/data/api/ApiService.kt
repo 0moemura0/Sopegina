@@ -8,13 +8,13 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiService {
-    @GET("/{type}/{page}?json=true")
+    @GET("/{type}/{page}?json=true&types=gif")
     suspend fun getPageByType(@Path("type") type: String, @Path("page") page: Int): GifPageResponse?
 
-    @GET("/random?json=true")
+    @GET("/random?json=true&types=gif")
     suspend fun getGIFRandom(): GifNetwork?
 
-    @GET("/{id}?json=true")
+    @GET("/{id}?json=true&types=gif")
     suspend fun getGIFCurrent(@Path("id") id: Int): GifNetwork?
 
     @GET("/comments/entry/{id}")

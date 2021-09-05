@@ -19,6 +19,7 @@
         android:theme="@style/Theme.Sopegina"
         tools:targetApi="m">
         <activity
+            android:screenOrientation="fullSensor"
             android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>

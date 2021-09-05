@@ -1,6 +1,7 @@
 package com.omoemurao.sopegina.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.core.net.toUri
@@ -35,29 +36,45 @@ class GifFragment : Fragment(R.layout.fragment_gif) {
         super.onViewCreated(view, savedInstanceState)
 
         val image: ImageView = view.findViewById(R.id.image)
-        val previous: ImageButton = view.findViewById(R.id.right)
-        val next: ImageButton = view.findViewById(R.id.left)
+        val previous: ImageButton = view.findViewById(R.id.left)
+        val next: ImageButton = view.findViewById(R.id.right)
 
         val title: TextView = view.findViewById(R.id.tv_title)
         val votes: TextView = view.findViewById(R.id.tv_votes)
-
+        val author: TextView = view.findViewById(R.id.tv_author)
+        val icFavorite: ImageView = view.findViewById(R.id.iv_favorite)
         val progressBar: ProgressBar = view.findViewById(R.id.image_progress)
+
+        previous.isEnabled = false
+        previous.isClickable = false
+
         previous.setOnClickListener {
-            viewModel.getPrevious()
+            viewModel.gifQueueId.value = viewModel.gifQueueId.value?.dec()
+            viewModel.getNextGif()
         }
         next.setOnClickListener {
-            viewModel.getNext()
+            viewModel.gifQueueId.value = viewModel.gifQueueId.value?.inc()
+            viewModel.getNextGif()
         }
+
+        viewModel.gifQueueId.observe(viewLifecycleOwner, {
+            previous.isEnabled = it != 0
+            previous.isClickable = it != 0
+        })
 
         viewModel.gifCurrent.observe(viewLifecycleOwner, { it ->
             it.handle {
                 success { gif ->
                     image.visibility = View.VISIBLE
                     votes.visibility = View.VISIBLE
-                    val imageUri = gif.gifURL.toUri()
+                    icFavorite.visibility = View.VISIBLE
+                    author.visibility = View.VISIBLE
+                    next.isClickable = true
+                    next.isEnabled = true
+                    val imageUri = gif.gifURL?.toUri()
                     Glide.with(requireContext())
                         .asGif()
-                        .listener(object :RequestListener<GifDrawable>{
+                        .listener(object : RequestListener<GifDrawable> {
                             override fun onLoadFailed(
                                 e: GlideException?,
                                 model: Any?,
@@ -83,19 +100,25 @@ class GifFragment : Fragment(R.layout.fragment_gif) {
 
                     title.text = gif.description
                     votes.text = gif.votes.toString()
-
+                    author.text = gif.author
                 }
                 loading {
+                    icFavorite.visibility = View.GONE
                     votes.visibility = View.GONE
                     progressBar.visibility = View.VISIBLE
                     image.visibility = View.GONE
                     title.text = ""
                     votes.text = ""
+                    author.text = ""
                 }
                 error { msg, _ ->
+                    Log.e("TAG", msg)
                     Toast.makeText(view.context, msg, Toast.LENGTH_SHORT).show()
+                    icFavorite.visibility = View.GONE
                     votes.visibility = View.GONE
                     image.visibility = View.VISIBLE
+                    next.isClickable = false
+                    next.isEnabled = false
                     progressBar.visibility = View.GONE
                     Glide
                         .with(view.context)
@@ -104,6 +127,7 @@ class GifFragment : Fragment(R.layout.fragment_gif) {
                         .into(image)
                     title.text = ""
                     votes.text = ""
+                    author.text = ""
                 }
             }
         })

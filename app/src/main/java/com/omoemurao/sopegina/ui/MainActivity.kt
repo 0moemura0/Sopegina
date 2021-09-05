@@ -17,14 +17,6 @@ class MainActivity : FragmentActivity() {
     private lateinit var adapter: NumberAdapter
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
-    private val tabNames: Array<String> by lazy {
-        arrayOf(
-            getString(R.string.last),
-            getString(R.string.best),
-            getString(R.string.hot),
-            getString(R.string.random)
-        )
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -36,7 +28,7 @@ class MainActivity : FragmentActivity() {
 
         tabLayout = findViewById(R.id.tab_layout)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = tabNames[position]
+            tab.text = GifTypes.values()[position].urlName
         }.attach()
     }
 

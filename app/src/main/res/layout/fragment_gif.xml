@@ -23,6 +23,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/tv_author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bgd_gradient_top"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:lines="1"
+                android:padding="@dimen/view_dimen_24dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/tv_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0"
+                tools:text="AUTHORAUTHORAUTHORAUTHORAUTHOR" />
+
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
@@ -58,15 +76,15 @@
                 android:background="@drawable/bgd_gradient"
                 android:ellipsize="end"
                 android:gravity="center_vertical|end"
-                android:lines="3"
                 android:hyphenationFrequency="none"
+                android:lines="3"
                 android:padding="@dimen/view_dimen_8dp"
                 android:singleLine="true"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/iv_favorite"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toEndOf="@id/tv_title"
                 app:layout_constraintTop_toTopOf="@id/tv_title"
                 tools:text="VOTES" />
@@ -85,8 +103,8 @@
 
             <ProgressBar
                 android:id="@+id/image_progress"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_margin="@dimen/view_dimen_4dp"
                 android:src="@drawable/bgd_progress_bar"
                 android:visibility="gone"
